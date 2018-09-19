@@ -21,12 +21,13 @@ export class MoviesComponent implements OnInit {
       (params: Params) => {
         const movie = params['movie']
         const page = params['page']
-        this.getMovies(movie, page)
+        const type = params ['type']
+        this.getMovies(movie, page, type)
       }
     )
   }
 
-  getMovies(movie: string, page: number) {
+  getMovies(movie: string, page: number, type: string) {
     this.moviesService.getMovies(movie, page).subscribe(
       (response: any) => {
         console.log(response)
