@@ -11,6 +11,7 @@ export class MoviesComponent implements OnInit {
   movies: any[]
   movie: string
   pages: number[] = []
+  
 
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) { }
 
