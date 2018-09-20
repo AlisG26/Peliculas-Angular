@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
-  { path: 'movies/:movie/:type/:page', component: MoviesComponent },
+  { path: 'movies/:movie/:page', component: MoviesComponent },
   { path: 'movie/:id', component: MovieComponent },
 ];
 

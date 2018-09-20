@@ -17,21 +17,20 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
     this.movie = this.route.snapshot.params['movie']
     const page = this.route.snapshot.params ['page']
-    const type = this.route.snapshot.params ['type']
 
     this.route.params.subscribe(
       (params: Params) => {
         this.movie = params['movie']
         const page = params['page']
-        const type = params ['type']
-        this.getMovies(this.movie, page, type)
+        this.getMovies(this.movie, page)
       }
     )
   }
 
-  getMovies(movie: string, page: number, type: string) {
+  getMovies(movie: string, page: number) {
     this.moviesService.getMovies(movie, page).subscribe(
       (response: any) => {
+        this.pages = []
         console.log(response)
         this.movies = response.Search
         const total = response.totalResults

@@ -12,7 +12,6 @@ declare var $: any;
 
 export class AppComponent {
   search: string = ''
-  type: string = 's'
   page: number = 1
   
 
@@ -21,7 +20,7 @@ export class AppComponent {
   searchMovies() {
     if(this.search.length > 0) {
 
-      this.router.navigate(['/movies', this.search, this.type, this.page])
+      this.router.navigate(['/movies', this.search, this.page])
     } else {
       alert('Ingrese un título para empezar la búsqueda')
     }
