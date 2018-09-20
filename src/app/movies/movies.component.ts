@@ -9,20 +9,22 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class MoviesComponent implements OnInit {
   movies: any[]
+  movie: string
+  pages: number[] = []
 
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const movie = this.route.snapshot.params['movie']
+    this.movie = this.route.snapshot.params['movie']
     const page = this.route.snapshot.params ['page']
     const type = this.route.snapshot.params ['type']
 
     this.route.params.subscribe(
       (params: Params) => {
-        const movie = params['movie']
+        this.movie = params['movie']
         const page = params['page']
         const type = params ['type']
-        this.getMovies(movie, page, type)
+        this.getMovies(this.movie, page, type)
       }
     )
   }
@@ -32,6 +34,12 @@ export class MoviesComponent implements OnInit {
       (response: any) => {
         console.log(response)
         this.movies = response.Search
+        const total = response.totalResults
+        const totalPages = Math.round(total/10)
+        for(let i = 1; i <= totalPages; i++) {
+          this.pages.push(i)
+        }
+
       }, (error) => console.log(error)
     )
   }
